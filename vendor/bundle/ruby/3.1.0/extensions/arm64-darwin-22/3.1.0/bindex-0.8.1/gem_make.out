@@ -1,0 +1,15 @@
+current directory: /Users/kumagaikouhei/Documents/Rails_tutorial/sample_app/vendor/bundle/ruby/3.1.0/gems/bindex-0.8.1/ext/skiptrace
+/Users/kumagaikouhei/.anyenv/envs/rbenv/versions/3.1.3/bin/ruby -I /Users/kumagaikouhei/.anyenv/envs/rbenv/versions/3.1.3/lib/ruby/3.1.0 extconf.rb
+creating Makefile
+
+current directory: /Users/kumagaikouhei/Documents/Rails_tutorial/sample_app/vendor/bundle/ruby/3.1.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20230117-86898-68e3l5 sitelibdir\=./.gem.20230117-86898-68e3l5 clean
+
+current directory: /Users/kumagaikouhei/Documents/Rails_tutorial/sample_app/vendor/bundle/ruby/3.1.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20230117-86898-68e3l5 sitelibdir\=./.gem.20230117-86898-68e3l5
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.bundle
+
+current directory: /Users/kumagaikouhei/Documents/Rails_tutorial/sample_app/vendor/bundle/ruby/3.1.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20230117-86898-68e3l5 sitelibdir\=./.gem.20230117-86898-68e3l5 install
+/opt/homebrew/bin/ginstall -c -m 0755 cruby.bundle ./.gem.20230117-86898-68e3l5/skiptrace/internal
