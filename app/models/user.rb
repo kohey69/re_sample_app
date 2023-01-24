@@ -5,7 +5,7 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates(:email, presence: true, length: {maximum: 255}, format: {with: VALID_EMAIL_REGEX}, uniqueness: true)
   has_secure_password
-  validates :password, presence: true, length: {minimum: 6}
+  validates :password, presence: true, length: {minimum: 6}, allow_nil: true #ユーザー登録時にはhas_secure_passwordのバリデーションが空欄でのパスワード登録を検証するようになっている
 
 
   #BCryptの使い方
@@ -24,6 +24,11 @@ class User < ApplicationRecord
   def remember
     self.remember_token = User.new_token #new_tokenメソッドで作成したランダムな文字列をremember_tokenに代入
     update_attribute(:remember_digest, User.digest(self.remember_token)) # remember_tokenをハッシュ化してUserモデルに保存（更新）する
+    remember_digest
+  end
+
+  def session_token
+    remember_digest || remember
   end
 
   #ハッシュ化されたトークンをBCryptで認証する
