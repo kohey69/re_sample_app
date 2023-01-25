@@ -65,7 +65,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "authenticated?メソッドはuserがnilの時falseを返すべき" do
-    assert_not @user.authenticated?('')
+    assert_not @user.authenticated?(:remember, '')
   end
 end
 

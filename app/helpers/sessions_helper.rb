@@ -24,7 +24,7 @@ module SessionsHelper
       end
     elsif (user_id = cookies.encrypted[:user_id])
       user = User.find_by(id: user_id) # 変数userを定義して、User.find_by(id: cookies.encrypted[:user_id]を代入する)
-      if user && user.authenticated?(cookies[:remember_token]) # userが存在する かつ cookiesに保存された記憶トークンで認証できる
+      if user && user.authenticated?(:remember, cookies[:remember_token]) # userが存在する かつ cookiesに保存された記憶トークンで認証できる
         log_in user # ログイン処理を行う
         @current_user = user # @current_userにuserを代入する
       end

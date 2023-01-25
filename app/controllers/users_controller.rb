@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(page: params[:page]) # gem(will_paginate)によってUser.allの.allをpaginateメソッドに書き換えるだけでパージネーションできる
+    # @users = User.paginate(page: params[:page]) # gem(will_paginate)によってUser.allの.allをpaginateメソッドに書き換えるだけでパージネーションできる
+    @users = User.where(activated: true).paginate(page: params[:page])
   end
 
   def show
@@ -18,10 +19,9 @@ class UsersController < ApplicationController
     # @user = User.new(params[:user]) にStrongParametersを実装しやすくするためuser_paramsをprivateに定義
     @user = User.new(user_params)
     if  @user.save
-      reset_session
-      log_in @user
-      flash[:success] = "ユーザー登録成功"
-      redirect_to @user #redirect_to user_url(@user)と同じ
+      @user.send_activation_email
+      flash[:info] = "メールアドレス宛に認証メールが届いているか確認してください"
+      redirect_to root_url 
     else
       render 'new', status: :unprocessable_entity
     end
