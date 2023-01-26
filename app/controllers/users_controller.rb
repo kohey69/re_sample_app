@@ -12,7 +12,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])   
+    @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   def create
@@ -56,13 +57,13 @@ private
   end
 
   # ログイン済みかどうか確認し、未ログインならログインページに飛ばす
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = "Please log in"
-      redirect_to login_url, status: :see_other #redirectの時は名前付きルートはurlしか使えない
-    end
-  end
+  # def logged_in_user
+  #   unless logged_in?
+  #     store_location
+  #     flash[:danger] = "Please log in"
+  #     redirect_to login_url, status: :see_other #redirectの時は名前付きルートはurlしか使えない
+  #   end
+  # end
 
   # フォームから入力されたidで@userを検索し、current_userと比較する
   def correct_user
